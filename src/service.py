@@ -6,7 +6,7 @@ from bentoml.io import NumpyNdarray
 xgb_runner = bentoml.models.get("xgb_booster:latest").to_runner()
 
 # Create a Service object
-svc = bentoml.Service("xgb_service", runners=[xgb_runner])
+svc = bentoml.Service("sample_service", runners=[xgb_runner])
 
 
 # Create an endpoint named classify
