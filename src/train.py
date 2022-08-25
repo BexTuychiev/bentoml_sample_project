@@ -13,8 +13,7 @@ def train_xgb_save(X, y, tag_name="xgb_final"):
     # Create DMatrix
     dtrain = xgb.DMatrix(X, label=y)
     # Specify parameters for a binary classification problem
-    params = {"objective": "binary:logistic", "booster": "gbtree",
-              "tree_method": "gpu_hist", "eval_metric": "auc"}
+    params = {"objective": "binary:logistic", "booster": "gbtree", "eval_metric": "auc"}
 
     # Train
     booster = xgb.train(params, dtrain, num_boost_round=20)
