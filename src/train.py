@@ -11,7 +11,7 @@ def train_xgb_save(X, y, tag_name="xgb_final"):
     A simple function to train a model and save it to BentoML model store.
     """
     # Create DMatrix
-    dtrain = xgb.DMatrix(X, label=y)
+    dtrain = xgb.DMatrix(X.values, label=y.values)
     # Specify parameters for a binary classification problem
     params = {"objective": "binary:logistic", "booster": "gbtree", "eval_metric": "auc"}
 
