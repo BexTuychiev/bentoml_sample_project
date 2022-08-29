@@ -1,5 +1,5 @@
 api_version: v1
-name: xgb_classifier
+name: xgb_classifier2
 operator:
   name: aws-lambda
 template: terraform

@@ -1,7 +1,7 @@
-import xgboost as xgb
 import pandas as pd
 import bentoml
 import warnings
+from sklearn.ensemble import RandomForestClassifier
 
 warnings.filterwarnings("ignore")
 
@@ -10,15 +10,14 @@ def train_xgb_save(X, y, tag_name="xgb_final"):
     """
     A simple function to train a model and save it to BentoML model store.
     """
-    # Create DMatrix
-    dtrain = xgb.DMatrix(X.values, label=y.values)
-    # Specify parameters for a binary classification problem
-    params = {"objective": "binary:logistic", "booster": "gbtree", "eval_metric": "auc"}
+
+    # Create a model
+    model = RandomForestClassifier(n_estimators=100, random_state=0)
 
     # Train
-    booster = xgb.train(params, dtrain, num_boost_round=20)
+    model.fit(X, y)
 
-    bentoml.xgboost.save_model(tag_name, booster)
+    bentoml.sklearn.save_model(tag_name, model)
 
 
 if __name__ == "__main__":
